@@ -1,6 +1,7 @@
 package com.example.minilearn.Controller;
 
 import com.example.minilearn.model.UserModel;
+import com.example.minilearn.response.ApiResponse;
 import com.example.minilearn.service.Notifications;
 import com.example.minilearn.service.UserService;
 import org.springframework.http.MediaType;
@@ -33,26 +34,41 @@ public class LoginController {
 
     // JSON
     @PostMapping  //@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) also create like
-    public UserModel createUser(@RequestBody UserModel user){
+    public ApiResponse<UserModel> createUser(@RequestBody UserModel user){
 //        Notifications createTeacher = new TeacherNotification();
 //        System.out.println(createTeacher.sentNotification("Teacher created successfull!"));
 //        System.out.println(notifications.sentNotification("Teacher created successfull!"));
         notifications.sentNotification("Teacher created successfull!");
-        return userService.createUser(user);
+//        return userService.createUser(user);
+
+        UserModel getUser = userService.createUser(user);
+        return new ApiResponse<>(
+                true,
+                "User created successfull!",
+                getUser
+        );
     }
 
     // FORM-DATA
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public UserModel createUser(
-            @RequestParam Long id,
+    public ApiResponse<UserModel> createUser(
+            @RequestParam(required = false) Long id,
             @RequestParam String name,
             @RequestParam String email
     ){
-        UserModel userObj = new UserModel(id,name,email);
+//        UserModel userObj = new UserModel(id,name,email);
 //        System.out.println(new TeacherNotification().sentNotification("User created successfull!"));
 //        System.out.println(notifications.sentNotification("User created successfull!"));
         notifications.sentNotification("User created successfull!");
-        return userService.createUser(userObj);
+
+        UserModel userObj = new UserModel(name, email);
+//        return userService.createUser(userObj);
+
+        return new ApiResponse<>(
+                true,
+                "User created successfull!",
+                userObj
+        );
     }
 
     @PostMapping("/student")
@@ -69,10 +85,12 @@ public class LoginController {
             @RequestParam String name,
             @RequestParam(required = false) String email
     ){
-        UserModel userTeacher = new UserModel(id, name, email);
+//        UserModel userTeacher = new UserModel(id, name, email);
+        UserModel userTeacher = new UserModel(name, email);
 //        System.out.println(new TeacherNotification().sentNotification("Teacher created successfull!"));
 //        System.out.println(notifications.sentNotification("Teacher created successfull!"));
         notifications.sentNotification("Teacher created successfull!");
+
         return userService.createUser(userTeacher);
     }
 }

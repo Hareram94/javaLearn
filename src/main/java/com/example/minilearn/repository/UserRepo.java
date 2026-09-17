@@ -1,11 +1,18 @@
 package com.example.minilearn.repository;
 
 import com.example.minilearn.model.UserModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+public interface UserRepo extends JpaRepository<UserModel, Long> {
+
+}
+
+/*
 @Repository
 public class UserRepo {
 
@@ -35,3 +42,4 @@ public class UserRepo {
         return user;
     }
 }
+*/

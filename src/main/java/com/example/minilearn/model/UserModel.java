@@ -1,7 +1,13 @@
 package com.example.minilearn.model;
 
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "users")
 public class UserModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String email;
@@ -10,8 +16,8 @@ public class UserModel {
 
     }
 
-    public UserModel(Long id, String name, String email){
-        this.id = id;
+    public UserModel(String name, String email){
+//        this.id = id;
         this.name = name;
         this.email = email;
     }

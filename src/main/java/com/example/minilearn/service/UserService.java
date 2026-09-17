@@ -20,7 +20,8 @@ public class UserService {
     }
 
     public UserModel getUserById(Long id){
-        return userRepo.findById(id);
+//        return userRepo.findById(id);
+        return userRepo.findById(id).orElse(null);
     }
 
     public UserModel createUser(UserModel user){
