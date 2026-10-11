@@ -27,4 +27,47 @@ public class UserService {
     public UserModel createUser(UserModel user){
         return userRepo.save(user);
     }
+
+    /*
+    //PUT
+    public UserModel updateUser(Long id, UserModel updateUser){
+
+        //        UserModel existingUser = userRepo.findById(id).orElse(null);
+
+        UserModel existingUser = userRepo.findById(id).orElseThrow(
+                () -> new UserNotFoundException(
+                        "User not found with id: " + id
+                )
+        );
+    }
+    */
+
+
+
+    /*
+
+
+     //PUT
+    public UserModel updateUser(Long id, UserModel updateUser){
+//        UserModel existingUser = userRepo.findById(id).orElse(null);
+
+        UserModel existingUser = userRepo.findById(id).orElseThrow(
+                () -> new UserNotFoundException(
+                        "User not found with id: " + id
+                )
+        );
+
+//        if (existingUser == null){
+//            return null;
+//        }
+
+        existingUser.setName(updateUser.getName());
+        existingUser.setEmail(updateUser.getEmail());
+
+        return userRepo.save(existingUser);
+    }
+
+     */
+
+
 }

@@ -42,6 +42,7 @@ public class LoginController {
 //        return userService.createUser(user);
 
         UserModel getUser = userService.createUser(user);
+
         return new ApiResponse<>(
                 true,
                 "User created successfull!",
@@ -93,4 +94,18 @@ public class LoginController {
 
         return userService.createUser(userTeacher);
     }
+
+    /*
+    @PutMapping("teacher/update")
+    public UserModel updateTeacher(
+            @RequestParam Long id,
+            @RequestParam String name,
+            @RequestParam String email
+    ){
+
+        UserModel user = new UserModel(name, email);
+
+        return userService.createUser(user);
+    }
+    */
 }
